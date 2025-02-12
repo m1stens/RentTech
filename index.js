@@ -49,7 +49,7 @@ const smartphones = [
 		name: 'iPhone 16 Pro Max',
 		description: 'Последняя модель iphone',
 		price: 1500,
-		image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
+		image: 'image/iphone16.jpeg'
 	}
 ]
 const tablets = [
