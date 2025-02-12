@@ -46,7 +46,7 @@ const smartphones = [
 	{
 		id: 1,
 		type: 'smartphone',
-		name: 'iPhone 13 Pro',
+		name: 'iPhone 16 Pro Max',
 		description: 'Последняя модель iphone',
 		price: 1500,
 		image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
@@ -69,7 +69,7 @@ const cameras = [
 		name: 'Sony A7 III',
 		description: 'Профессиональная камера',
 		price: 2500,
-		image: 'https://images.unsplash.com/photo-1516724562728-afc824a36e84?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
+		image: 'image/sony.jpg'
 }
 ]
 
