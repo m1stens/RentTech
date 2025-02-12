@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/styles.css">
+	<script src="index.js" defer></script>
+	<script src="app.js" defer></script>
+	<title>RentTech</title>
+</head>
+<body>
+	<header class="header">
+		<div class="header__inner container">
+			<a href="/index.html" class="header__logo logo">
+				<img src="image/renttech.svg" alt="RentTech" loading="lazy" width="179" height="32" class="logo__image">
+			</a>
+			<nav class="header__menu hidden-mobile">
+				<ul class="header__menu-list">
+					<li class="header__menu-item ">
+						<a href="" class="header__menu-link catalog-link">Каталог</a>
+					</li>
+					<li class="header__menu-item">
+						<a href="" class="header__menu-link how-link">Как это работает</a>
+					</li>
+					<li class="header__menu-item">
+						<a href="" class="header__menu-link contacts-link">Контакты</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="content">
+		<section class="menu section container">
+
+			<button class="menu__catalog laptop">
+				<img src="image/laptop.svg" alt="Ноутбуки" loading="lazy" width="28" height="28" class="menu__catalog-image">
+				<p>Ноутбуки</p>
+			</button>
+
+			<button class="menu__catalog smartphone">
+				<img src="image/smartphone.svg" alt="Ноутбуки" loading="lazy" width="28" height="28" class="menu__catalog-image">
+				<p>Смартфоны</p>
+			</button>
+
+			<button class="menu__catalog camera">
+				<img src="image/camera.svg" alt="Ноутбуки" loading="lazy" width="28" height="28" class="menu__catalog-image">
+				<p>Камеры</p>
+			</button>
+
+			<button class="menu__catalog tablet">
+				<img src="image/tablet.svg" alt="Ноутбуки" loading="lazy" width="29" height="29" class="menu__catalog-image">
+				<p>Планшеты</p>
+			</button>
+
+		</section>
+
+		<section class="section container" id="catalog">
+				<div class="catalog">
+					<h3>Популярная техника</h3>
+					<ul class="catalog__list">
+						
+					</ul>
+				</div>
+		</section>
+
+		<section class="section container" id="how">
+			
+			<div class="how">
+				<h3>Как это работает</h3>
+				<ul class="how__list">
+					<li class="how__list-item">
+						<div class="how__list-number">1</div>
+						<h4>Выберите технику</h4>
+						<p>Просмотрите каталог и выберите нужное устройство</p>
+					</li>
+
+					<li class="how__list-item">
+						<div class="how__list-number">2</div>
+						<h4>Оформите заявку</h4>
+						<p>Укажите срок аренды и контактные данные</p>
+					</li>
+
+					<li class="how__list-item">
+						<div class="how__list-number">3</div>
+						<h4>Получите устройство</h4>
+						<p>Заберите технику в пункте выдачи или закажите доставку</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="section container" id="contacts">
+			<div class="contacts">
+				<h3 class="">Контакты</h3>
+				<div class="contacts__info">
+					<p class="">Телефон: +7 (952) 110-44-35</p>
+					<p class="">Email: info@renttech.ru</p>
+					<p class="">Адрес: г. Калининград, ул. Артиллерийская 18</p>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<footer>
+		<div class="copyright">
+			<p>&copy; 2024 RentTech. Все права защищены.</p>
+		</div>
+	</footer>
+
+	<div class="modal">
+		<div class="modal__content">
+			<span class="modal__content-close">&times;</span>
+			<h3>Оформление аренды</h3>
+			<form class="modal__content-form">
+				<input type="text" id="name" placeholder="Ваше имя" class="modal__content-input" required>
+				<input type="tel" id="phone" placeholder="Телефон" class="modal__content-input" required>
+				<input type="email" id="email" placeholder="Email" class="modal__content-input" required>
+				<input type="number" id="days" placeholder="Количество дней" class="modal__content-input" required min="1">
+				<button type="submit" class="button">Отправить заявку</button>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+.header{
+	background-color: var(--color-light);
+	padding: 20px 0;
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	
+
+	&__inner{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: 40px;
+		
+	}
+
+	&__logo{
+		margin-top: auto;
+	}
+
+	&__menu{
+		margin-left: auto;
+		font-size: 20px;
+
+		&-list{
+			display: flex;
+			align-items: center;
+			column-gap: 40px;
+
+			@include desktop {
+				column-gap: 20px;
+			}
+		}
+
+		
+	}
+
+
+}

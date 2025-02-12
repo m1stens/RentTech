@@ -1,0 +1,602 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+ Убираем внутренние отступы слева тегам списков,
+ у которых есть атрибут class
+*/
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+ Убираем внешние отступы body и двум другим тегам,
+ у которых есть атрибут class
+*/
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+ Убираем внешние отступы вертикали нужным тегам,
+ у которых есть атрибут class
+*/
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+ Убираем стандартный маркер маркированному списку,
+ у которого есть атрибут class
+*/
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+ Обнуляем вертикальные внешние отступы параграфа,
+ объявляем локальную переменную для внешнего отступа вниз,
+ чтобы избежать взаимодействие с более сложным селектором
+*/
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+ Внешний отступ вниз для параграфа без атрибута class,
+ который расположен не последним среди своих соседних элементов
+*/
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+  margin-top: 5px;
+}
+
+/**
+ Упрощаем работу с изображениями и видео
+*/
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+ Наследуем свойства шрифт для полей ввода
+*/
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+   Пригодится в большинстве ситуаций
+   (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  height: 100%;
+  /**
+   Убираем скачок интерфейса по горизонтали
+   при появлении / исчезновении скроллбара
+  */
+  scrollbar-gutter: stable;
+}
+
+/**
+ Плавный скролл
+*/
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+   Пригодится в большинстве ситуаций
+   (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  min-height: 100%;
+  /**
+   Унифицированный интерлиньяж
+  */
+  line-height: 1.5;
+}
+
+/**
+ Нормализация высоты элемента ссылки при его инспектировании в DevTools
+*/
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+ Курсор-рука при наведении на элемент
+*/
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+ Приводим к единому цвету svg-элементы
+ (за исключением тех, у которых уже указан
+ атрибут fill со значением 'none' или начинается с 'url')
+*/
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+ Приводим к единому цвету svg-элементы
+ (за исключением тех, у которых уже указан
+ атрибут stroke со значением 'none')
+*/
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+ Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+*/
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+ Приведение рамок таблиц в классический 'collapse' вид
+*/
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+ Удаляем все анимации и переходы для людей,
+ которые предпочитают их не использовать
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("fonts/SpaceGrotesk-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("fonts/SpaceGrotesk-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --color-dark: #191A23;
+  --color-dark-alt: #292a32;
+  --color-light: #ffffff;
+  --color-accent: rgb(37, 100, 235);
+  --color-accent-alt: rgb(52, 152, 219);
+  --color-grey: rgb(243 243 243);
+  --color-grey-alt: #898989;
+  --border: 1px solid var(--color-dark);
+  --border-radius: 14px;
+  --border-radius-small: 7px;
+  --border-radius-large: 45px;
+  --shadow: 0 5px 0 0 var(--color-dark);
+  --tw-shadow: 0 2px 0 0 rgb(0 0 0/ 0.05);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --font-family-base: "Space Grotesk", sans-serif;
+  --container-width: 1240px;
+  --container-padding-x: 20px;
+  --section-padding-y: 40px;
+  --input-height: 59px;
+  --button-height: 68px;
+  --transition-duration: 0.2;
+}
+@media (max-width: 1280px) {
+  :root {
+    --section-padding-y: 30px;
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --section-padding-y: 20px;
+  }
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+body {
+  font-size: clamp(16px, 1.25vw, 18px);
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  line-height: 1.28;
+  color: var(--color-dark);
+  background-color: var(--color-grey);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  font-size: clamp(43px, 4.1666666667vw, 60px);
+}
+
+h2 {
+  font-size: clamp(36px, 2.7777777778vw, 40px);
+}
+
+h3 {
+  font-size: clamp(26px, 2.0833333333vw, 30px);
+}
+
+h4 {
+  font-size: clamp(18px, 1.3888888889vw, 20px);
+}
+
+.header {
+  background-color: var(--color-light);
+  padding: 20px 0;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
+}
+.header__logo {
+  margin-top: auto;
+}
+.header__menu {
+  margin-left: auto;
+  font-size: 20px;
+}
+.header__menu-list {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
+}
+@media (max-width: 1280px) {
+  .header__menu-list {
+    -moz-column-gap: 20px;
+         column-gap: 20px;
+  }
+}
+
+.section {
+  padding-block: var(--section-padding-y);
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-content: space-between;
+  height: 148px;
+  padding: 32px 20px;
+}
+@media (max-width: 1023px) {
+  .menu {
+    height: 200px;
+  }
+}
+@media (max-width: 767px) {
+  .menu {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 2rem;
+    justify-content: space-between;
+    height: 500px;
+    padding: 32px 20px;
+  }
+}
+.menu__catalog {
+  width: 292px;
+  height: 84px;
+  background-color: var(--color-light);
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition: transform 0.3s;
+}
+@media (max-width: 767px) {
+  .menu__catalog {
+    width: 345px;
+    height: 90px;
+  }
+}
+@media (hover: hover) {
+  .menu__catalog:hover {
+    --tw-shadow: 0 3px 7px 0 rgb(0 0 0 / 0.15);
+  }
+}
+@media (hover: none) {
+  .menu__catalog:active {
+    --tw-shadow: 0 3px 7px 0 rgb(0 0 0 / 0.15);
+  }
+}
+.menu__catalog:active {
+  transform: translateY(5px);
+}
+.menu__catalog-image {
+  margin-left: 45%;
+  margin-bottom: 10px;
+}
+
+.catalog {
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .catalog {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.catalog__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+.catalog__list-item {
+  display: block;
+  width: 286px;
+  z-index: 1;
+  border-radius: 0.5rem;
+  transition: transform 0.3s;
+}
+@media (hover: hover) {
+  .catalog__list-item:hover {
+    transform: translateY(-5px);
+  }
+}
+@media (hover: none) {
+  .catalog__list-item:active {
+    transform: translateY(-5px);
+  }
+}
+@media (max-width: 767px) {
+  .catalog__list-item {
+    width: 345px;
+  }
+}
+.catalog__list-image {
+  height: 192px;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .catalog__list-image {
+    height: 235px;
+  }
+}
+.catalog__list-info {
+  font-size: clamp(12px, 0.9722222222vw, 14px);
+  padding: 16px;
+  background-color: var(--color-light);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.catalog__list-infoPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.catalog__list-price {
+  font-size: clamp(16px, 1.3888888889vw, 20px);
+  color: var(--color-accent);
+}
+
+.button {
+  background-color: var(--color-accent);
+  color: var(--color-light);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 8px 16px;
+  transition: background-color 0.3s;
+  font-size: clamp(12px, 1.1111111111vw, 16px);
+}
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--color-accent-alt);
+  }
+}
+@media (hover: none) {
+  .button:active {
+    background-color: var(--color-accent-alt);
+  }
+}
+
+.how {
+  text-align: center;
+}
+.how__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  text-align: center;
+  gap: 2rem;
+}
+.how__list-item {
+  padding: 2rem;
+  background-color: var(--color-light);
+  border-radius: 0.5rem;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+}
+.how__list-number {
+  width: 40px;
+  height: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  background: var(--color-accent);
+  border-radius: 50%;
+  margin: 0px auto 1rem;
+}
+
+.contacts {
+  text-align: center;
+  background-color: var(--color-light);
+  padding: 64px 20px;
+  border-radius: 0.5rem;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+}
+.contacts__info {
+  padding-top: 3rem;
+  max-width: 600px;
+  margin: 0px auto;
+}
+.contacts__info p {
+  padding-top: 5px;
+}
+
+.copyright {
+  color: var(--color-light);
+  background-color: var(--color-accent);
+  padding: 1rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
+.modal__content {
+  background: var(--color-light);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  position: relative;
+  text-align: center;
+}
+.modal__content-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.modal__content-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.modal__content-input {
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-dark);
+  padding: 5px;
+}
+
+@media (max-width: 767px) {
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=styles.css.map */

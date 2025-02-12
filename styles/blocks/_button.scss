@@ -1,0 +1,12 @@
+.button{
+	background-color: var(--color-accent);
+	color: var(--color-light);
+	border: none;
+	border-radius: 0.5rem;
+	padding: 8px 16px;
+	transition: background-color 0.3s;
+	@include fluid-text(16,12);
+	@include hover {
+		background-color: var(--color-accent-alt);
+	}
+}

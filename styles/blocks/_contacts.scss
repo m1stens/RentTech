@@ -1,0 +1,17 @@
+.contacts {
+	text-align: center;
+	background-color: var(--color-light);
+	padding: 64px 20px;
+	border-radius: 0.5rem;
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+	&__info{
+		padding-top: 3rem;
+		max-width: 600px;
+		margin: 0px auto;
+
+		& p {
+			padding-top: 5px;
+		}
+	}
+}
