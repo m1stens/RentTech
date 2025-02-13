@@ -271,3 +271,6 @@ function tabletProducts() {
 tabletElement.addEventListener('click', function() {
 	tabletProducts()
 })
+
+
+
